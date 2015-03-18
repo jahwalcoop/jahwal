@@ -1,0 +1,134 @@
+<div class="row well">
+    <div class="row">
+        <div class="span12">
+            <button class="btn pull-left" back-button><i class="icon-chevron-left"></i>뒤로</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span10"><h5><span class="icon icon-ok"></span> 조합원 "{{shareData.Name}}"님의 대출 내역 입니다.</h5>
+                </div>
+                <div class="span2">
+                    <div class="pull-right">
+                        <!--<button class="btn btn-default btn-sm" ng-click="print()"><i class="icon icon-print"></i></button>-->
+                        <button class="btn btn-default btn-sm" ng-click="saveFile()"><i class="icon icon-file"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span12" style="text-align: center">
+                    * 총 {{loanCnt}}건의 대출 내역이 있습니다.
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <tabset>
+                        <tab heading="전체" select="status='all'">
+
+                        </tab>
+                        <tab heading="진행중" select="status='progress'">
+
+                        </tab>
+                        <tab heading="상환완료" select="status='complete'">
+
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <div class="pull-right">
+                        <button class="btn btn-default" ng-click="onRepayClick()" ng-show="adminPermit">상환하기</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <div id="grid" kendo-grid k-data-source="kgdatasource" k-pageable="false" k-sortable="true"
+                         k-columns="kgcolumns"
+                         k-selectable="'row'" k-resizable="true"
+                         k-on-change="rowSelected(kendoEvent)" style="height: 150px"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span3 offset4">대출금 총계</div>
+                <div class="span4">
+                    {{loanSum | nfcurrency}}원
+                </div>
+            </div>
+            <div class="row">
+                <div class="span3 offset4">현재 상환금 총계</div>
+                <div class="span4">
+                    {{repaySum | nfcurrency}}원
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="span12" style="text-align: center">
+                    * 위 선택된 대출 건에 대한 세부 내역을 조회할 수 있습니다.
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4 btn-group" ng-model="yearRange" bs-buttons-radio>
+                    <button type="button" class="btn" value="0">전체조회</button>
+                    <button type="button" class="btn" value="1">최근1개년</button>
+                    <button type="button" class="btn" value="2">최근2개년</button>
+                    <button type="button" class="btn" value="5">최근5개년</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4">
+                    <div class="input-append">
+                        <input type="text" ng-model="fromdate"
+                               class="input-small"
+                               data-date-format="yyyy/m/d" bs-datepicker>
+                        <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                class="icon-calendar"></i>
+                        </button>
+                    </div>
+                    부터
+                    <div class="input-append">
+                        <input type="text" ng-model="todate"
+                               class="input-small"
+                               data-date-format="yyyy/m/d" bs-datepicker>
+                        <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                class="icon-calendar"></i>
+                        </button>
+                    </div>
+                    까지
+                </div>
+                <div class="span2">
+                    <button class="btn btn-default" ng-click="repayQuery()">상환내역조회</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <div id="gridDetail" kendo-grid k-data-source="kgdatasourceDetail" k-pageable="false"
+                         k-sortable="true"
+                         k-columns="kgcolumnsDetail"
+                         k-selectable="'row'" k-resizable="true"
+                         k-on-change="rowSelectedDetail(kendoEvent)" style="height: 380px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div kendo-window="loanDialog.dialog" k-title="'대출'" k-visible="false" k-modal="true">
+    <div ng-include="loanDialog.url"></div>
+</div>
+
+<div kendo-window="repayDialog.dialog" k-title="'상환'" k-visible="false" k-modal="true">
+    <div ng-include="repayDialog.url"></div>
+</div>
+
+<div kendo-window="warnDialog.dialog" k-title="'경고'" k-visible="false" k-modal="true">
+    <div ng-include="warnDialog.url"></div>
+</div>

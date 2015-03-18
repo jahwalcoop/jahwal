@@ -1,0 +1,54 @@
+<div class="row well">
+    <div class="row">
+        <div class="span12"><h5><span class="icon icon-ok"></span> 조합원 정보를 조회합니다.</h5></div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span6">
+                    <form class="form-inline">
+                        <label>조합원 검색조건 </label>
+                        <select ui-select2="select2Options" ng-model="search.selected" data-placeholder=""
+                                ng-required="true" style="width:120px;margin-bottom:2px">
+                            <option ng-repeat="param in searchparams" value="{{param.value}}">{{param.text}}</option>
+                        </select>
+                        <input type="text" class="input-small" ng-show="searchTypeText" ng-model="search.value">
+                        <input ng-model="search.value"
+                               class="input-small"
+                               data-date-format="yyyy/m/d" id="dateto" bs-datepicker ng-show="!searchTypeText">
+                        <button class="btn btn-small" type="submit" ng-click="fnsearch(memberstatus)">
+                            <i class="icon icon-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="span12" style="text-align: center">
+                    * 대출건수가 1건이상인 조합원을 조회한 결과 총 {{memberCnt}}건의 검색 결과가 있습니다.
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <tabset>
+                        <tab heading="전체" select="fnsearch('all')">
+
+                        </tab>
+                        <tab heading="활동중" select="fnsearch('활동중')">
+
+                        </tab>
+                        <tab heading="탈퇴" select="fnsearch('탈퇴')">
+
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12" kendo-grid k-data-source="kgdatasource" k-pageable="kgpageable" k-sortable="true"
+                     k-columns="kgcolumns"
+                     k-selectable="'row'" k-resizable="true"
+                     k-on-change="rowSelected(kendoEvent)" style="height: 380px"></div>
+            </div>
+        </div>
+    </div>
+</div>

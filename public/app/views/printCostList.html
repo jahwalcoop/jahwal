@@ -1,0 +1,114 @@
+<!--헤더-->
+<div class="no-print" style="width:900px">
+    <button class="btn" back-button><i class="icon-chevron-left"></i>뒤로</button>
+    <br>
+    <br>
+</div>
+<div style="width:900px">
+    <div style="float: left;width:500px">
+        <h1>세입/세출 집계표</h1>
+    </div>
+    <div class="pull-right">
+        <table border="1" style="width:300px;height:100px">
+            <tr>
+                <td rowspan="2">결재</td>
+                <td style="width:25%">담당</td>
+                <td style="width:25%">이사장</td>
+                <td style="width:25%"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--0 -->
+<div style="clear:both">
+    사업명 : {{data.business}}<br>
+    자금원천 : {{data.moneytype}}<br>
+</div>
+<!--1        -->
+<table border="1" style="width:900px">
+    <tr>
+        <td colspan="4">과목</td>
+        <td rowspan="2">전기이월</td>
+        <td colspan="2">당월입출</td>
+        <td rowspan="2">잔액</td>
+    </tr>
+    <!--<tr ng-repeat="item in data.data">-->
+        <!--<td>{{item.No}}</td>-->
+        <!--<td>{{item.Account}}</td>-->
+        <!--<td>{{item.Customer}}</td>-->
+        <!--<td>{{item.Price}}</td>-->
+        <!--<td>{{item.Source}}</td>-->
+        <!--<td>{{item.Summary}}</td>-->
+    <!--</tr>-->
+    <tr>
+        <td>관</td>
+        <td>항</td>
+        <td>목</td>
+        <td>세목</td>
+        <td>입금</td>
+        <td>출금</td>
+    </tr>
+    <!--<tr>-->
+        <!--<td rowspan="4">class1</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td rowspan="3">class2</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td rowspan="2">class3</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td>&nbsp;</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td>class4</td>-->
+        <!--<td> </td>-->
+        <!--<td>11</td>-->
+        <!--<td>11</td>-->
+        <!--<td> </td>-->
+    <!--</tr>-->
+    <tr ng-repeat="item in bowl">
+        <td ng-show="item.type == 1" rowspan="{{item.num}}">{{item.name}}</td>
+        <td ng-show="item.type == 1">&nbsp;</td>
+        <td ng-show="item.type == 1">&nbsp;</td>
+        <td ng-show="item.type == 1">&nbsp;</td>
+
+        <td ng-show="item.type == 2" rowspan="{{item.num}}">{{item.name}}</td>
+        <td ng-show="item.type == 2">&nbsp;</td>
+        <td ng-show="item.type == 2">&nbsp;</td>
+
+        <td ng-show="item.type == 3" rowspan="{{item.num}}">{{item.name}}</td>
+        <td ng-show="item.type == 3">&nbsp;</td>
+
+        <td ng-show="item.type == 4">{{item.name}}</td>
+        <td ng-show="item.type == 0" colspan="4">{{item.name}}</td>
+        <td ng-show="item.type == 30" colspan="4">총계</td>
+        <td>{{item.carryover}}</td>
+        <td>{{item.inprice}}</td>
+        <td>{{item.outprice}}</td>
+        <td>{{item.balance}}</td>
+    </tr>
+    <tr ng-repeat="item in testArr">
+        <jh-sheet item="item"></jh-sheet>
+    </tr>
+</table>

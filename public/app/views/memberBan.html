@@ -1,0 +1,48 @@
+<div class="row well">
+    <div class="row">
+        <div class="span12">
+            <button class="btn pull-left" back-button><i class="icon-chevron-left"></i>뒤로</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span9"><h5><span class="icon icon-ok"></span> 조합원 "{{member.Name}}"님의 탈퇴 신청 기입 절차 입니다.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span10 offset1">
+            <div class="row">
+                <div class="span2"><span class="icon icon-chevron-right"></span>청산자금
+                </div>
+                <div class="span8" style="color:red">
+                    <div class="span3" ng-click="gotoInvestStatus()"><i ng-click="gotoInvestStatus()" style="cursor: hand;cursor: pointer;">출자금(증자-감자): {{fundedMoney | nfcurrency}}</i></div>
+                    <div class="span3" ng-click="gotoLoanStatus()"><i ng-click="gotoLoanStatus()" style="cursor: hand;cursor: pointer;">미상환금액(대출-상환): {{remainedLoan | nfcurrency}}</i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="bs-docs-separator">
+    <div class="row">
+       <div ng-include="memberform.url"></div>
+    </div>
+</div>
+<div kendo-window="modalSave" k-title="'탈퇴'" k-visible="false" k-modal="true">
+    <div class="span4">
+        <div class="row">
+            <div class="span4" style="text-align: center">
+                <br>
+                조합원 <b>{{member.Name}}</b>님이 탈퇴되었습니다
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span4" style="text-align: center">
+                <button type="button" class="btn btn-small" ng-click="complete()">확인</button>
+            </div>
+        </div>
+    </div>
+</div>

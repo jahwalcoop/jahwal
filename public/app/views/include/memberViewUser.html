@@ -1,0 +1,64 @@
+<div class="span10 offset1">
+    <!--조합원 추가일때는 숨김-->
+    <div class="row">
+        <div class="span2"><span class="icon icon-chevron-right"></span> 개인고유번호</div>
+        <div class="span8 form-inline">
+            {{member.Pid}}
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span2"><span class="icon icon-chevron-right"></span> 인적사항</div>
+        <div class="span8">
+            <div class="row">
+                <div class="span1"><span class="label pull-right">이름</span></div>
+                <div class="span2">{{member.Name}}</div>
+                <div class="span1"><span class="label pull-right">생년월일</span></div>
+                <div class="span4">{{member.Birthday | date:'yyyy/MM/dd'}} {{member.CalendarType}}</div>
+            </div>
+            <div class="row">
+                <div class="span1"><span class="label pull-right">주소</span></div>
+                <div class="span7">{{member.Address}}</div>
+            </div>
+            <div class="row">
+                <div class="span1"><span class="label pull-right">연락처</span></div>
+                <div class="span2">{{member.Phone}}</div>
+                <div class="span1"><span class="label pull-right">휴대폰</span></div>
+                <div class="span2">{{member.CellPhone}}</div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span2"><span class="icon icon-chevron-right"></span> 사업단</div>
+        <div class="span1"><span class="label pull-right">사업단명</span></div>
+        <div class="span2">{{member.GroupName}}</div>
+        <div class="span1"><span class="label pull-right">사업단 연락처</span></div>
+        <div class="span2">{{member.GroupPhone}}</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span2"><span class="icon icon-chevron-right"></span>약정출자금액</div>
+        <div class="span8">
+            <div class="row">
+                <div class="span8">{{member.FundingMethod}} {{member.PromisedMoney}} </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span2"><span class="icon icon-chevron-right"></span>가입일시</div>
+        <div class="span6">{{member.RegDate | date:'yyyy/MM/dd'}}</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span2"><span class="icon icon-chevron-right"></span>조합원구분</div>
+        <div class="span8">{{member.MemberType}}</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span2"><span class="icon icon-chevron-right"></span>가입비</div>
+        <div class="span8">{{member.Fee}}원납</div>
+    </div>
+    <hr>
+</div>

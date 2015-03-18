@@ -1,0 +1,93 @@
+<div class="row well">
+    <div class="row">
+        <div class="span10"><h5><span class="icon icon-ok"></span> 지역 자활공제 협동조합의 출자금 현황입니다.</h5></div>
+        <div class="span2">
+            <div class="pull-right">
+                <!--<button class="btn btn-default btn-sm">화면 출력하기</button>-->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form name="summaryForm" class="css-form" novalidate>
+            <div class="span12">
+                <div class="row">
+                    <div class="span12 form-inline">
+                        <span class="span1">지역</span>
+                        <select ui-select2="select2Options" ng-model="zonecode" data-placeholder="" required
+                                style="width:150px" required ng-disabled="disablezone">
+                            <option ng-repeat="zone in zones" value="{{zone.Code}}">{{zone.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span12 form-inline">
+                        <span class="span1">사업단</span>
+                        <select ui-select2="select2Options" ng-model="groupname" data-placeholder="" required
+                                style="width:150px" required>
+                            <option value="all">전체</option>
+                            <option ng-repeat="group in groups" value="{{group.GroupName}}">{{group.GroupName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span12 form-inline">
+                        <span class="span1">조회기간</span>
+
+                        <div class="input-append">
+                            <button type="button" class="btn" ng-model="tbutton.active" bs-button style="width:80px">
+                                {{tbutton.label}}
+                            </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" ng-model="fromdate"
+                                   class="input-small"
+                                   data-date-format="yyyy/m/d" bs-datepicker ng-disabled="tbutton.active">
+                            <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                    class="icon-calendar"></i>
+                            </button>
+                        </div>
+                        ~
+                        <div class="input-append">
+                            <input type="text" ng-model="todate"
+                                   class="input-small"
+                                   data-date-format="yyyy/m/d" bs-datepicker ng-disabled="tbutton.active">
+                            <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                    class="icon-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="text-align: center">
+                    <button class="btn btn-default" ng-click="submit()" ng-disabled="summaryForm.$invalid">
+                        출자내역조회
+                    </button>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="span12">
+                        <div id="grid" kendo-grid k-data-source="kgdatasource" k-pageable="kgpageable" k-sortable="true"
+                             k-columns="kgcolumns"
+                             k-selectable="'row'" k-resizable="true"
+                             k-on-change="rowSelected(kendoEvent)" style="height: 380px"></div>
+                    </div>
+                </div>
+                <div class="row" style="text-align: right">
+                    <div class="span8 offset4">
+                        <div class="row" style="margin-top:15px;">
+                            <div class="span2">현재 출자금 총계</div>
+                            <div class="span2">
+                                <b>{{fundAll | nfcurrency}}</b>원
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:15px;">
+                            <div class="span2">현재까지의 출자금 누계</div>
+                            <div class="span2">
+                                <b>{{fundSum | nfcurrency}}</b>원
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

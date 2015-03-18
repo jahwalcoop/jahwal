@@ -1,0 +1,148 @@
+<!--<div class="modal-header">-->
+    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+    <!--<h3 id="myModalLabel">Modal header</h3>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+    <div class="row">
+        <div class="span10">
+            <div class="row">
+                <div class="span5"><h5><span class="icon icon-ok"></span> 조합원 "ㅇㅇㅇ"님의 개인정보 입니다.</h5>
+                </div>
+                <div class="span5">
+                    <div class="pull-right">
+                        <button class="btn" ng-click="gotoInvestStatus()">출자/대출 상황 보기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="bs-docs-separator">
+    <div class="row">
+        <div class="span10">
+            <div class="row">
+                <div class="span2"><span class="icon icon-hand-right"></span> 개인고유번호</div>
+                <div class="span8"><input class="input-large" paceholder="JWIC00002317" ng-model="member.Pid">
+                    <button class="btn btn-small" ng-click="showModalPasswd()">비밀번호 초기화하기</button>
+                </div>
+            </div>
+            <div class="row" style="background-color: #efefef">
+                <div class="span2"><span class="icon icon-hand-right"></span> 인적사항</div>
+                <div class="span8">
+                    <div class="row">
+                        <div class="span1"><span class="label pull-right">이름</span></div>
+                        <div class="span2"><input class="input-small" placeholder="고길동" ng-model="member.Name"></div>
+                        <div class="span1"><span class="label pull-right">생년월일</span></div>
+                        <div class="span4">
+                            <form class="form-inline">
+                                <input kendo-date-picker k-options='kopts' ng-model="Birthday" aria-label=""/>
+                                <label class="radio"><input type="radio" name="dayClass" checked="checked"
+                                                            ng-model="member.CalendarType">양력</label>
+                                <label class="radio"><input type="radio" name="dayClass" ng-model="member.CalendarType">음력</label>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span1"><span class="label pull-right">주소</span></div>
+                        <div class="span7">
+                            <div class="input-append">
+                                <button class="btn">우편번호검색</button>
+                                <input type="text" class="input-large"
+                                       placeholder="XX시 XX구 XX동 XXX번지" ng-model="member.Address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span1"><span class="label pull-right">연락처</span></div>
+                        <div class="span2"><input class="input-small" placeholder="0000-1234-5678"
+                                                  ng-model="member.Phone"></div>
+                        <div class="span1"><span class="label pull-right">휴대폰</span></div>
+                        <div class="span2"><input class="input-small" placeholder="0000-1234-5678"
+                                                  ng-model="member.CellPhone"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2"><span class="icon icon-hand-right"></span> 사업단</div>
+                <div class="span1"><span class="label pull-right">사업단명</span></div>
+                <div class="span2"><input class="input-small" placeholder="0000-1234-5678" ng-model="member.ZoneName">
+                </div>
+                <div class="span1"><span class="label pull-right">사업단 연락처</span></div>
+                <div class="span2"><input class="input-small" placeholder="0000-1234-5678"
+                                          ng-model="member.ZoneContact"></div>
+            </div>
+            <div class="row" style="background-color: #efefef">
+                <div class="span2"><span class="icon icon-hand-right"></span> 약정출자좌수</div>
+                <div class="span8">
+                    <div class="row">
+                        <div class="span8">
+                            <select kendo-drop-down-list k-options="selectOptions"
+                                    k-on-change="selectChange(kendoEvent)" ng-model="srcSelect"></select>
+                            <input class="input-small" placeholder="{{money}}" value="{{money}}">원
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2"><span class="icon icon-hand-right"></span>가입일시</div>
+                <div class="span6">
+                    <div class="input-group">
+                        <input kendo-date-picker k-options='kopts' ng-model="RegDate"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="background-color: #efefef">
+                <div class="span2"><span class="icon icon-hand-right"></span>조합원구분</div>
+                <div class="span8">
+                    <form class="form-inline">
+                        <label class="radio"><input type="radio" name="memberClass" checked="checked"
+                                                    ng-model="member.memberType">참여주민</label>
+                        <label class="radio"><input type="radio" name="memberClass"
+                                                    ng-model="member.memberType">지역주민</label>
+                        <label class="radio"><input type="radio" name="memberClass"
+                                                    ng-model="member.memberType">기타</label>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2"><span class="icon icon-hand-right"></span>가입비</div>
+                <div class="span8">
+                    <input class="input-sm" placeholder="10000" ng-model="member.Fee">원납
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2"><span class="icon icon-hand-right"></span>특이사항</div>
+                <div class="span8">
+                    <textarea rows="3" class="span8" ng-model="member.Note"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-small" ng-click="modalPersonOk()">개인정보 변경내용 저장</button>
+                    <button type="button" class="btn btn-small" ng-click="modalPersonCancel()">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--</div>-->
+<!--<div class="modal-footer">-->
+    <!--<button class="btn" ng-click="dismiss()">Close</button>-->
+    <!--<button class="btn btn-primary" ng-click="modal.saved=true;dismiss()">Save changes</button>-->
+    <!--<button class="btn btn-primary" ng-click="parentController(dismiss)">Parent dismiss</button>-->
+<!--</div>-->
+<!--</div>-->
+
+<div kendo-window="modalPasswd" k-title="'비밀번호초기화'" k-visible="false" k-modal="true">
+<div class="span5">
+<div class="row">
+<div class="span5" style="text-align: center">
+비밀번호를 초기화 하시겠습니까?
+</div>
+</div>
+<div class="row">
+<div class="span5" style="text-align: center">
+<button type="button" class="btn btn-small" ng-click="modalPasswdOk()">초기화</button>
+<button type="button" class="btn btn-small" ng-click="modalPasswdCancel()">취소</button>
+</div>
+</div>
+</div>
+</div>

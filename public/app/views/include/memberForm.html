@@ -1,0 +1,287 @@
+<form name="userform" class="css-form" novalidate>
+    <div class="span10 offset1">
+        <fieldset ng-disabled="memberform.type == 'delete' || memberform.type == 'view' ">
+            <!--조합원 추가일때 표시-->
+            <div class="row" ng-show="memberform.type == 'add'" ng-disabled="memberform.type != 'add'">
+                <div class="span2"><span class="icon icon-chevron-right"></span> 개인고유번호</div>
+                <div class="span8 form-inline">
+                    <label class="radio"><input type="radio" id="pidType1" ng-model="validPid.type" name="pidType"
+                                                value="auto">자동증가</label>
+                    <br>
+                    <label class="radio"><input type="radio" id="pidType2" ng-model="validPid.type" name="pidType"
+                                                value="choose">선택입력</label>
+                    <b>{{member.ZoneCode}}-</b>
+                    <input type="text" class="input-large" name="customPid" ng-model="member.customPid"
+                           ng-required="validPid.type == 'choose'"
+                           ng-disabled="validPid.type != 'choose'" ng-pattern="/^(\d)+$/" ng-maxlength="6" ng-minlength="6"/>
+                    <button type="button" class="btn" ng-click="checkDuplicate()">중복확인</button>
+                    <em ng-show="!validPid.success" style="color: red">{{validPid.message}}</em>
+                    <div ng-show="validPid.type == 'choose'">
+                        * 조합원번호는 지역코드({{member.ZoneCode}})-6자리숫자(000000)로 이루어집니다.
+                    </div>
+                    <br>
+                    <em ng-show="userform.customPid.$error.pattern" style="color: red">
+                        * 숫자만 입력해 주세요.<br>
+                    </em>
+                    <em ng-show="userform.customPid.$error.maxlength" style="color: red">
+                        * 6자리를 초과할 수 없습니다.<br>
+                    </em>
+                    <em ng-show="userform.customPid.$error.minlength" style="color: red">
+                        * 6자리 이상이어야 합니다.<br>
+                    </em>
+                </div>
+            </div>
+            <!--조합원 추가일때는 숨김-->
+            <div class="row" ng-hide="memberform.type == 'add'">
+                <div class="span2"><span class="icon icon-chevron-right"></span> 개인고유번호</div>
+                <div class="span6 form-inline">
+                    <input type="text" class="input-large" ng-model="member.Pid" ng-disabled="true">
+                </div>
+                <div class="span2">
+                    <button type="button" class="btn pull-right" ng-click="resetPassword()"
+                            ng-show="memberform.type == 'update'">비밀번호초기화하기
+                    </button>
+                </div>
+            </div>
+            <div class="row" style="background-color: #efefef">
+                <div class="span2"><span class="icon icon-chevron-right"></span> 인적사항</div>
+                <div class="span8">
+                    <div class="row">
+                        <div class="span1"><span class="label pull-right">이름</span></div>
+                        <div class="span2"><input type="text" class="input-small" ng-model="member.Name" required></div>
+                        <div class="span2"><span class="label pull-right">생년월일</span></div>
+                        <div class="span3 form-inline">
+                            <!--<input kendo-date-picker k-options='kopts' ng-model="member.Birthday" required/>-->
+                        <span class="input-append">
+                            <input type="text" ng-model="member.Birthday"
+                                   class="input-small"
+                                   data-date-format="yyyy/m/d" bs-datepicker required>
+                            <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                    class="icon-calendar"></i>
+                            </button>
+                        </span>
+                            <label class="radio"><input id="CalendarType1" type="radio" name="CalendarType"
+                                                        checked="checked"
+                                                        ng-model="member.CalendarType" value="양력" required>양력</label>
+                            <label class="radio"><input id="CalendarType2" type="radio" name="CalendarType"
+                                                        ng-model="member.CalendarType"
+                                                        value="음력" required>음력</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span1"><span class="label pull-right">주소</span></div>
+                        <div class="span7">
+                            <span class="input-prepend">
+                                <button class="btn" ng-click="address.dialog.center().open()">주소검색</button>
+                                <input type="text" class="input-large" ng-model="member.Address" style="width:500px"
+                                       required>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span1"><span class="label pull-right">연락처</span></div>
+                        <div class="span2"><input type="text" class="input-large" ng-model="member.Phone" requireone={{member.CellPhone}}>
+                        </div>
+                        <div class="span2"><span class="label pull-right">휴대폰</span></div>
+                        <div class="span2"><input type="text" class="input-large" ng-model="member.CellPhone" requireone={{member.Phone}}>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2"><span class="icon icon-chevron-right"></span> 지역</div>
+                <div class="span1"><span class="label pull-right">지역명</span></div>
+                <div class="span2">
+                    {{member.ZoneName}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2"><span class="icon icon-chevron-right"></span> 사업단</div>
+                <div class="span1"><span class="label pull-right">사업단명</span></div>
+                <div class="span2">
+                    <!--<input type="text" class="input-small" ng-model="member.ZoneName" required>-->
+                    <!--<select kendo-drop-down-list k-options="selectZoneOpt" k-on-change="selectZoneChange(kendoEvent)" ng-model="zoneSelected" required></select>-->
+                    <select ui-select2="select2Options" ng-model="member.GroupName" data-placeholder=''
+                            style="width:150px" ng-disabled="memberform.type == 'delete'">
+                        <option value=""></option>
+                        <option ng-repeat="group in groups" value="{{group.GroupName}}">{{group.GroupName}}</option>
+                    </select>
+                </div>
+                <div class="span2"><span class="label pull-right">사업단 연락처</span></div>
+                <div class="span2"><input type="text" class="input-large" ng-model="member.GroupPhone"
+                                          ng-disabled="true"></div>
+            </div>
+            <div class="row" style="background-color: #efefef">
+                <div class="span2"><span class="icon icon-chevron-right"></span> 약정출자금액</div>
+                <div class="span8">
+                    <div class="row">
+                        <div class="span8">
+                            <!--<select kendo-drop-down-list k-options="selectOptions" k-on-change="selectChange(kendoEvent)" ng-model="srcSelect"></select>-->
+                            <div class="form-inline">
+                                <label class="radio"><input type="radio" id="FundingMethod1" name="FundingMethod"
+                                                            checked="checked" ng-model="member.FundingMethod"
+                                                            value="정기출자"
+                                                            required>정기출자</label>
+                                <input type="text" class="input-small" ng-model="member.PromisedMoney"
+                                       ng-required="member.FundingMethod == '정기출자'"
+                                       ng-disabled="member.FundingMethod != '정기출자'" ng-pattern="/^[0-9]+$/">원
+                                <br>
+                                <label class="radio"><input type="radio" id="FundingMethod2" name="FundingMethod"
+                                                            ng-model="member.FundingMethod"
+                                                            value="수시출자"
+                                                            required>수시출자</label>
+                            </div>
+
+                            * 각 지역공제협동조합 마다 설정된 좌당 금액에 따라 출자좌수가 자동으로 산정됩니다.
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2"><span class="icon icon-chevron-right"></span>가입일시</div>
+                <div class="span6">
+                    <!--<input kendo-date-picker k-options='kopts' ng-model="member.RegDate" required/>-->
+                        <span class="input-append">
+                            <input type="text" ng-model="member.RegDate"
+                                   class="input-small"
+                                   data-date-format="yyyy/m/d" bs-datepicker required>
+                            <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                    class="icon-calendar"></i>
+                            </button>
+                        </span>
+                </div>
+            </div>
+            <div class="row" style="background-color: #efefef">
+                <div class="span2"><span class="icon icon-chevron-right"></span>조합원구분</div>
+                <div class="span8">
+                    <form class="form-inline">
+                        <label class="radio"><input type="radio" id="MemberType1" name="MemberType"
+                                                    ng-model="member.MemberType" value="참여주민" required>참여주민</label>
+                        <label class="radio"><input type="radio" id="MemberType2" name="MemberType"
+                                                    ng-model="member.MemberType" value="지역주민" required>지역주민</label>
+                        <label class="radio"><input type="radio" id="MemberType3" name="MemberType"
+                                                    ng-model="member.MemberType" value="기타" required>기타</label>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2"><span class="icon icon-chevron-right"></span>가입비</div>
+                <div class="span8">
+                    <input type="text" class="input-small" placeholder="10000" ng-model="member.Fee" required>원납
+                </div>
+            </div>
+        </fieldset>
+        <!--조합원 삭제일때만 표시-->
+        <hr ng-show="memberform.type == 'delete'">
+        <div class="row" ng-show="memberform.type == 'delete'">
+            <div class="span5 offset2" style="color: #ff0000">
+                <!--<pre>-->
+                상기의 조합원에 대한 탈퇴를 진행합니다.<br>
+                탈퇴 처리되어도 해당 조합원의 기본정보는 조회 확인이 가능하며<br>
+                이후 재가입 시에는 개인고유번호가 재교부 됩니다.
+                <!--</pre>-->
+            </div>
+        </div>
+        <!--조합원 추가 일때만 표시하지 않음-->
+        <div class="row" ng-show="memberform.type != 'add'">
+            <div class="span2"><span class="icon icon-chevron-right"></span>탈퇴일시</div>
+            <div class="span6">
+                <!--<input kendo-date-picker k-options='kopts' ng-model="member.RegDate" required/>-->
+                        <span class="input-append">
+                            <input type="text" ng-model="member.DropDate"
+                                   class="input-small"
+                                   data-date-format="yyyy/m/d" bs-datepicker>
+                            <button type="button" class="btn btn-info" data-toggle="datepicker">
+                                <i class="icon-calendar"></i>
+                            </button>
+                        </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span2"><span class="icon icon-chevron-right"></span>특이사항</div>
+            <div class="span8">
+                <textarea rows="3" class="span8" ng-model="member.Note"></textarea>
+            </div>
+        </div>
+        <div class="row"  ng-show="memberform.type == 'add'">
+            <div class="pull-right">
+                <button type="button" class="btn btn-small" ng-click="submit()"
+                        ng-disabled="(userform.$invalid || (member.Phone=='' && member.CellPhone=='') || !validPid.success)">확인
+                </button>
+                <button type="button" class="btn btn-small" back-button>취소</button>
+            </div>
+        </div>
+        <div class="row"  ng-show="memberform.type != 'add'">
+            <div class="pull-right">
+                <button type="button" class="btn btn-small" ng-click="submit()"
+                        ng-disabled="(userform.$invalid || (member.Phone=='' && member.CellPhone==''))"  ng-show="adminPermit">수정
+                </button>
+                <button type="button" class="btn btn-small" back-button  ng-show="adminPermit">취소</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div kendo-window="address.dialog" k-title="'주소검색'" k-visible="false" k-modal="true" style="height:400px">
+    <form name="addressform" class="css-form" novalidate>
+        <fieldset>
+            <div class="row">
+                <div class="span5">
+                    <div class=" input-append">
+                        <input type="text" class="input-small" ng-model="address.token">
+                        <button type="submit" class="btn btn-info" ng-click="address.search(address.token)">
+                            <i class="icon-search"></i>
+                        </button>
+                    </div>
+                    <em>읍,면,동을 입력해주세요.</em>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span5" style="height:200px;">
+                    <ul class="unstyled">
+                        <li ng-repeat="addr in address.data">
+                                        <span class="label"
+                                              ng-click="address.select(addr.Address)">{{addr.Address}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div kendo-window="resetpw.dialog" k-title="'비밀번호 초기화'" k-visible="false" k-modal="true">
+    <div class="row">
+        <div class="span6" style="text-align: center">
+            <br>
+            <br>
+            초기화 하시겠습니까?
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span6" style="text-align: center">
+            <button type="submit" class="btn" ng-click="resetpw.submit()">확인</button>
+            <button type="submit" class="btn" ng-click="resetpw.cancel()">취소</button>
+        </div>
+    </div>
+</div>
+
+<div kendo-window="resetpw.warndialog" k-title="'확인'" k-visible="false" k-modal="true">
+    <div class="row">
+        <div class="span6" style="text-align: center">
+            <br>
+            <br>
+            비밀번호가 설정되어있지 않습니다.<br>
+            "관리자설정 > 비밀번호 초기화 설정"에서 비밀번호를 설정해주세요.
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span6" style="text-align: center">
+            <button type="submit" class="btn" ng-click="resetpw.warn()">확인</button>
+        </div>
+    </div>
+</div>

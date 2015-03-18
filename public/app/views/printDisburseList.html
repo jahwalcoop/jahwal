@@ -1,0 +1,90 @@
+<!--헤더-->
+<div class="no-print" style="width:900px">
+    <button class="btn" back-button><i class="icon-chevron-left"></i>뒤로</button>
+    <br>
+    <br>
+</div>
+<div style="width:900px">
+    <div style="float: left;width:500px">
+        <h1>{{data.type}}</h1>
+    </div>
+    <div class="pull-right">
+        <table border="1" style="width:300px;height:100px">
+            <tr>
+                <td rowspan="2">결재</td>
+                <td style="width:25%">담당</td>
+                <td style="width:25%">이사장</td>
+                <td style="width:25%"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--0 -->
+<table border="1" style="width:900px;clear: both">
+    <tr>
+        <td colspan="2">세입(출)과목</td>
+        <td></td>
+        <td></td>
+        <td>발의</td>
+        <td>{{data.date1 | date}}</td>
+    </tr>
+    <tr>
+        <td style="width:50px">관</td>
+        <td>자활근로사업비</td>
+        <td>지출원</td>
+        <td></td>
+        <td>결재</td>
+        <td>{{data.date2 | date}}</td>
+    </tr>
+    <tr>
+        <td>항</td>
+        <td>{{data.subject}}</td>
+        <td>사 업</td>
+        <td>{{data.business}}</td>
+        <td>출 납</td>
+        <td>{{data.date3 | date}}</td>
+    </tr>
+    <tr>
+        <td>목</td>
+        <td>{{data.content}}</td>
+        <td>작 성 자</td>
+        <td>{{data.name}}</td>
+        <td>등 기</td>
+        <td>{{data.date4 | date}}</td>
+    </tr>
+</table>
+<!--1        -->
+<table border="1" style="width:900px">
+    <tr>
+        <td>No.</td>
+        <td>계정과목(세목)</td>
+        <td>적 요</td>
+        <td>금액</td>
+        <td>자금원천</td>
+        <td>상대계정</td>
+    </tr>
+    <tr ng-repeat="item in data.griddata">
+        <td>{{item.No}}</td>
+        <td>{{item.Account}}</td>
+        <td>{{item.Customer}}</td>
+        <td>{{item.Price}}</td>
+        <td>{{item.Source}}</td>
+        <td>{{item.Contra}}</td>
+    </tr>
+</table>
+<!--2        -->
+<table border="1" style="width:900px">
+    <tr>
+        <td style="width:100px">금액</td>
+        <td>{{data.sum}}</td>
+    </tr>
+    <tr>
+        <td style="height:300px">비고</td>
+        <td>{{data.note}}</td>
+    </tr>
+</table>

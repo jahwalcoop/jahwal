@@ -1,0 +1,41 @@
+<div class="row well">
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span6"><h5><span class="icon icon-ok"></span> 신규 조합원 개별등록</h5>
+                </div>
+                <div class="span5">
+                    <div class="pull-right">
+                        <!--<button class="btn btn-default btn-small">기존 자료에서 불러오기</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="bs-docs-separator">
+    <div class="row">
+        <div ng-include="memberform.url"></div>
+    </div>
+</div>
+
+<div kendo-window="modalSave" k-title="'저장'" k-visible="false" k-modal="true">
+    <div class="span4">
+        <div class="row">
+            <div class="span4" style="text-align: center">
+                <br>
+                조합원 "<b>{{member.Name}}</b>"님의 개인정보가 저장되었습니다
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span4" style="text-align: center">
+                <button type="button" class="btn btn-small" ng-click="complete()">확인</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div kendo-window="warnDialog.dialog" k-title="'확인'" k-visible="false" k-modal="false" style="z-index:1">
+    <div ng-include="warnDialog.url"></div>
+</div>

@@ -1,0 +1,76 @@
+<div class="row well">
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span10"><h5><span class="icon icon-ok"></span> 세입/세출 집계표 등록</h5>
+                </div>
+                <div class="span2">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span10 offset1">
+            <div class="row">
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-small" ng-click="print()">&nbsp;&nbsp;&nbsp;출력&nbsp;&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2">
+                    사업명
+                </div>
+                <div class="span8">
+                    <input type="text" class="input-large" ng-model="business"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2">
+                    자금원천
+                </div>
+                <div class="span8">
+                    <input type="text" class="input-large" ng-model="moneytype"/>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="span10">
+                    <b>세입입력</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span10">
+                    <div class="row">
+                        <div class="btn-group span2">
+                            <button class="btn btn-small" ng-click="addInRow()"><i class="icon icon-plus"></i></button>
+                            <button class="btn btn-small" ng-click="deleteInRow()"><i class="icon icon-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gridStyle" ng-grid="gridOptions" style="height: 180px"></div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="span10">
+                    <b>세출입력</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span10">
+                    <div class="row">
+                        <div class="btn-group span2">
+                            <button class="btn btn-small" ng-click="addOutRow()"><i class="icon icon-plus"></i></button>
+                            <button class="btn btn-small" ng-click="deleteOutRow()"><i class="icon icon-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gridStyle" ng-grid="gridOptionsOut" style="height: 180px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+.hero-unit {
+    margin: 50px auto 0 auto;
+    width: 300px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    background-color: #eee;
+    border-radius: 6px;
+    padding: 60px;
+}
+
+.hero-unit h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.memberadd {
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.memberadd .header {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 900px;
+    text-align: center;
+}
+
+.memberadd table {
+    width: 900px;
+    height: 1000px;
+    clear: both;
+    font-size: 20px;
+}
+
+.memberadd td {
+    height: 40px;
+}
+
+.memberban {
+    margin-top: 30px;
+    font-weight: bold;
+    width:900px;
+}
+
+.memberban .header {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    width: 900px;
+    text-align: center;
+}
+
+.memberban .body {
+    font-size: 20px;
+    clear: both;
+}
+
+.memberban .body table {
+    width: 900px;
+    clear: both;
+}
+
+.memberban td {
+    height: 40px;
+}

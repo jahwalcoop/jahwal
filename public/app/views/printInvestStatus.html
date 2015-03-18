@@ -1,0 +1,39 @@
+<!--헤더-->
+<div>
+    <div class="no-print" style="width:900px">
+        <button class="btn" back-button><i class="icon-chevron-left"></i>뒤로</button>
+        <br>
+        <br>
+    </div>
+    <div style="width:900px">
+        <div style="float: left;width:300px">
+            <h3>출자금</h3>
+        </div>
+        <div class="pull-right">
+            <b>조합원번호 : {{data.Pid}}</b>
+            &nbsp;&nbsp;
+            <b>성명 : {{data.Name}}</b>
+        </div>
+    </div>
+    <!--0 -->
+    <table border="1" style="width:900px;clear: both">
+        <tr>
+            <td>번호</td>
+            <td>년 월 일</td>
+            <td>사업단</td>
+            <td>찾으신금액</td>
+            <td>출자하신금액/배당금</td>
+            <td>출자금액</td>
+            <td>비고</td>
+        </tr>
+        <tr ng-repeat="item in data.data">
+            <td>{{item.DepositNum}}</td>
+            <td>{{item.DepositDate | date:'yyyy/MM/dd'}}</td>
+            <td>{{item.GroupName}}</td>
+            <td style="text-align: right">{{item.ReduceMoney | nfzerocurrency}}</td>
+            <td style="text-align: right">{{item.Money | nfzerocurrency}}</td>
+            <td style="text-align: right">{{item.MoneySum | nfzerocurrency}}</td>
+            <td></td>
+        </tr>
+    </table>
+</div>

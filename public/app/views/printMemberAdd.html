@@ -1,0 +1,70 @@
+<!--헤더-->
+<div class="memberadd">
+    <div class="no-print" style="width:900px">
+        <button class="btn" back-button><i class="icon-chevron-left"></i>뒤로</button>
+        <br>
+        <br>
+    </div>
+    <!--0 -->
+    <div class="header"><h1><b>가 &nbsp;&nbsp;입 &nbsp;&nbsp;신 &nbsp;&nbsp;청 &nbsp;&nbsp;서</b></h1></div>
+    <table border="2">
+        <tr>
+            <td style="width:180px">성명</td>
+            <td style="width:180px">{{member.Name}}</td>
+            <td style="width:180px">조합원번호</td>
+            <td colspan="2" style="width:360px">{{member.Pid}}</td>
+        </tr>
+        <tr>
+            <td>생년월일</td>
+            <td colspan="4">{{bDate}} ({{member.CalendarType}})</td>
+        </tr>
+        <tr>
+            <td rowspan="2">주소</td>
+            <td colspan="2" rowspan="2">{{member.Address}}</td>
+            <td style="width:180px" rowspan="2">연락처</td>
+            <td style="width:180px">&#9742; {{member.Phone}}</td>
+        </tr>
+        <tr>
+            <td style="width:180px">휴) {{member.CellPhone}}</td>
+        </tr>
+        <tr>
+            <td>사업단명</td>
+            <td colspan="2">{{member.GroupName}}</td>
+            <td style="width:180px">연락처</td>
+            <td style="width:180px">&#9742; {{member.GroupPhone}}</td>
+        </tr>
+        <tr>
+            <td colspan="3">매월 납입약정 출자좌수 및 금액</td>
+            <td colspan="2">{{fundingStatus}}</td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align: center">
+                <br>
+                <br>
+                <br>
+                <br>
+                가입 신청을 진심으로 축하드립니다<br>
+                <br>
+                <br>
+                <br>
+                가입비는 {{member.Fee | nfcurrency}}원이며, 출자금은 출자 1좌당 {{zone.MoneyCut | nfcurrency}}원 입니다.<br>
+                <br>
+                <br>
+                <br>
+                위 본인은 "{{zone.Name}}" 자활공제협동조합의 정관 및 규정을 준수하고<br>
+                <br>
+                <br>
+                조합원으로 의무를 성실히 이행 할 것을 약속하며 이에 가입을 신청합니다.<br>
+                <br>
+                <br>
+                {{regYear}}년 &nbsp;&nbsp;&nbsp;&nbsp;{{regMonth}}월 &nbsp;&nbsp;&nbsp;&nbsp;{{regDay}}일<br>
+                <br>
+                <br>
+                신청인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{member.Name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(인 또는 서명)
+                <br>
+                <br>
+                <br>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="span6 offset3" style="text-align: center">
+     <!-- <b>::: 전국 자활 공제 협동조합 연합회 :::</b>-->
+       <b>::: {{zone.Name}} 자활 공제 협동조합 연합회 :::</b>
+       <!-- <b>::: {{zone.Name}} 자활공제협동조합 :::</b>-->
+    </div>
+    <div class="span3">
+        <div class="pull-right" style="text-align: right">
+            {{user.Name}} &lt;{{user.MemberClass}}&gt;
+            <a href="" ng-click="userModifyClick()" ng-show="user.MemberClass != '조합원'" alt="개인정보수정"><i class="icon-user"></i></a>
+            <button class="btn btn-mini btn-default" ng-click="logout()">로그아웃</button>
+        </div>
+    </div>
+</div>
+
+<div kendo-window="memberform.dialog" k-title="'개인정보수정'" k-visible="false" k-modal="true" style="z-index:1">
+    <div ng-include="memberform.url"></div>
+</div>
+
+<div kendo-window="warnDialog.dialog" k-title="'확인'" k-visible="false" k-modal="false" style="z-index:1">
+    <div ng-include="warnDialog.url"></div>
+</div>
+
+<div kendo-window="updateDialog.dialog" k-title="'확인'" k-visible="false" k-modal="false" style="z-index:1">
+    <div ng-include="updateDialog.url"></div>
+</div>
+
+<div kendo-window="noticeDialog.dialog" k-title="'변경사항 공지'" k-visible="false" k-modal="true">
+    <div ng-include="noticeDialog.url"></div>
+</div>

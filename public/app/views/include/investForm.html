@@ -1,0 +1,114 @@
+<form name="fundform" class="css-form" novalidate>
+    <div class="row">
+        <div class="span7">
+            <div class="row">
+                <div class="span5">
+                    <h5>
+                        <span class="icon icon-ok"></span>
+                        조합원 "{{fundDialog.data.Name}}"님의 {{fundDialog.data.fundType}}내역을 입력합니다.
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--증자/감자 선택-->
+    <!--<div class="row">-->
+        <!--<div class="span7">-->
+            <!--<div>-->
+                <!--<label class="radio">-->
+                    <!--<input type="radio" ng-model="fundDialog.data.fundType" value="증자" required>증자-->
+                <!--</label>-->
+                <!--<label class="radio">-->
+                    <!--<input type="radio" ng-model="fundDialog.data.fundType" value="감자" required>감자-->
+                <!--</label>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <hr class="bs-docs-separator">
+    <div class="row">
+        <div class="span7">
+            <fieldset ng-disabled="fundDialog.type == 'delete'">
+                <div class="row">
+                    <div class="span2">
+                        <span class="icon icon-chevron-right"></span> {{fundDialog.data.fundType}}입금일
+                    </div>
+                    <div class="span5">
+                        <div class="input-append">
+                            <input type="text" ng-model="fundDialog.fund.DepositDate"
+                                   class="input-small"
+                                   data-date-format="yyyy/m/d" bs-datepicker required>
+                            <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                    class="icon-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 사업단</div>
+                    <div class="span5">
+                        <select ui-select2="select2Options" ng-model="fundDialog.fund.GroupName" data-placeholder=''
+                                style="width:150px" ng-disabled="fundDialog.type == 'delete'">
+                            <option value=""></option>
+                            <option ng-repeat="group in groups" value="{{group.GroupName}}">{{group.GroupName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2">
+                        <span class="icon icon-chevron-right"></span> {{fundDialog.data.fundType}}방법
+                    </div>
+                    <div class="span5">
+                        <!--증자일때만 표시-->
+                        <label class="radio" ng-show="fundDialog.data.fundType == '증자'">
+                            <input type="radio" name="searchParam"
+                                   checked="checked" ng-model="fundDialog.fund.Method"
+                                   value="정기출자"
+                                   required>정기출자</label>
+                        <label class="radio" ng-show="fundDialog.data.fundType == '증자'">
+                            <input type="radio" name="searchParam"
+                                   ng-model="fundDialog.fund.Method"
+                                   value="수시출자"
+                                   required>수시출자</label>
+                        <!--감자일때만 표시-->
+                        <label class="radio" ng-show="fundDialog.data.fundType == '감자'">
+                            <input type="radio" name="searchParam"
+                                   ng-model="fundDialog.fund.Method"
+                                   value="반환금"
+                                   required>반환금</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span5 offset2" style="color:red">
+                        {{warn}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2">
+                        <span class="icon icon-chevron-right"></span> {{fundDialog.data.fundType}}액
+                    </div>
+                    <!--증자일때만 표시: controller에서 감자내역을 0으로 해주어야함-->
+                    <div class="span5" ng-show="fundDialog.data.fundType == '증자'">
+                        <input type="text" class="input-small" ng-model="fundDialog.fund.Money"
+                               ng-pattern="/^[0-9]+$/" required>원
+                    </div>
+                    <!--감자일때만 표시: controller에서 증자내역을 0으로 해주어야함-->
+                    <div class="span5" ng-show="fundDialog.data.fundType == '감자'">
+                        <input type="text" class="input-small" ng-model="fundDialog.fund.ReduceMoney"
+                               ng-pattern="/^[0-9]+$/" required>원
+                    </div>
+                </div>
+                <div class="row" ng-show="fundDialog.type == 'delete'">
+                    <div class="span5" style="color: #ff0000;font-weight: bold">{{fundDialog.data.fundType}}내역을 삭제합니다.
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="span7" style="text-align: center">
+                    <button class="btn" ng-click="fundSubmit(fundDialog.type)" ng-disabled="fundform.$invalid">확인
+                    </button>
+                    <button class="btn" ng-click="fundCancel()">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

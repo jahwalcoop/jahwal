@@ -1,0 +1,43 @@
+<form name="permitform" class="css-form" novalidate>
+    <div class="row">
+        <div class="span6"><i class="icon icon-ok"></i> 조합원 {{permitDialog.data.Name}}님의 권한을 변경합니다.</div>
+    </div>
+    <div class="row">
+        <div class="span6">
+            <fieldset ng-disabled="permitDialog.type == 'delete'">
+                <div class="row">
+                    <div class="span2">개인고유번호</div>
+                    <div class="span3">{{permitDialog.data.Pid}}</div>
+                </div>
+                <div class="row">
+                    <div class="span2">권한설정</div>
+                    <div class="span2">
+                        <select ui-select2="select2Options" ng-model="permitDialog.permit.MemberClass"
+                                style="width:150px" required>
+                            <option ng-repeat="item in permitTypes" value="{{item.permitType}}">{{item.permitType}}</option>
+                        </select>
+                        <!--<select class="span2" ng-model="permitDialog.permit.MemberClass" ng-options="value.permitType as value.permitType for (key, value) in permitTypes" data-style="btn" bs-select></select>-->
+                    </div>
+                </div>
+                <div class="row" ng-show="permitDialog.type == 'update'">
+                    <br>
+                    <br>
+                    <div class="span5" style="color: #ff0000;font-weight: bold">권한을 변경합니다.</div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-small" ng-click="permitSubmit(permitDialog.type)"
+                            ng-disabled="permitform.$invalid">
+                        저장
+                    </button>
+                    <button type="button" class="btn btn-small" ng-click="permitCancel()">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

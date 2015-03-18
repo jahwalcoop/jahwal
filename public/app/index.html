@@ -1,0 +1,231 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <style>
+        @media print
+        {
+            .no-print, .no-print *
+            {
+                display: none !important;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #FAFAFA;
+                font: 12pt "Tahoma";
+            }
+            * {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            .page {
+                width: 21cm;
+                min-height: 29.7cm;
+                padding: 2cm;
+                margin: 1cm auto;
+                border: 1px #D3D3D3 solid;
+                border-radius: 5px;
+                background: white;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+            .subpage {
+                padding: 1cm;
+                border: 5px red solid;
+                height: 237mm;
+                outline: 2cm #FFEAEA solid;
+            }
+
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            @media print {
+                .page {
+                    margin: 0;
+                    border: initial;
+                    border-radius: initial;
+                    width: initial;
+                    min-height: initial;
+                    box-shadow: initial;
+                    background: initial;
+                    page-break-after: always;
+                }
+            }
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap_2.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap_2.3.2/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="styles/signin.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/mybootstrap3merge.css">
+    <link rel="stylesheet" href="bower_components/kendo-ui/styles/kendo.common.min.css">
+    <link rel="stylesheet" href="bower_components/kendo-ui/styles/kendo.default.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/css/datepicker.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-select/bootstrap-select.min.css">
+    <!--<link rel="stylesheet" href="bower_components/angular-strap/vendor/bootstrap-select.css">-->
+    <link rel="stylesheet" href="bower_components/select2/select2.css">
+    <link rel="stylesheet" href="bower_components/angular-ui/build/angular-ui.min.css">
+    <link rel="stylesheet" href="bower_components/angular-grid/ng-grid.min.css">
+    <!-- endbuild -->
+</head>
+<body ng-app="publicApp">
+<!--[if lte IE 8]>
+<script language="JavaScript">
+location.href = "ie.html";
+</script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<div id="wrap" ng-controller='CommonCtrl'>
+    <div class="container" ng-show="header.type == 'admin'">
+        <div ng-include="getTop()"></div>
+        <div class="row well well-small">
+            <div ng-include="getLogout()"></div>
+            <div class="span12">
+
+                <div ng-include="getDashBoard()"></div>
+            </div>
+        </div>
+        <div ng-include="getMenu()"></div>
+    </div>
+    <div class="container" ng-show="header.type == 'user'">
+        <div ng-include="getTop()"></div>
+        <div class="row well well-small">
+            <div ng-include="getLogout()"></div>
+        </div>
+        <div ng-include="getUserMenu()"></div>
+    </div>
+    <div class="container">
+        <div ng-view=""></div>
+    </div>
+
+    <div id="footer" style="text-align: center" ng-show="header.type != 'none'">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li><a href='#/notice/privacy'>개인정보 이용방침</a></li>
+                        <!--<li><a href='/notice'>이용약관</a></li>-->
+                        <li><a href='#/notice/sitemap'>사이트맵</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    COPYRIGHTS Self-sufficiency Center. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- build:js scripts/plugins.js -->
+<script src="bower_components/jquery/jquery.min.js"></script>
+<!-- endbuild -->
+
+<script src="bower_components/holderjs/holder.js"></script>
+<script src="bower_components/bootstrap_2.3.2/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<!-- endbuild -->
+
+<!-- build:js scripts/modules.js -->
+<script src="bower_components/kendo-ui/js/kendo.web.min.js"></script>
+<script src="bower_components/angular-kendo-ui/build/angular-kendo.min.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
+<script src="bower_components/angular-strap/vendor/bootstrap-select.js"></script>
+<script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.kr.js"></script>
+
+<script src="bower_components/select2/select2.min.js"></script>
+<script src="bower_components/angular-ui-select2/src/select2.js"></script>
+<script src="bower_components/angular-ui/build/angular-ui.min.js"></script>
+<script src="bower_components/bootstrap-gh-pages/ui-bootstrap-0.5.0.min.js"></script>
+<script src="bower_components/bootstrap-gh-pages/ui-bootstrap-tpls-0.5.0.min.js"></script>
+<script src="bower_components/angular-grid/ng-grid-2.0.7.min.js"></script>
+<!-- endbuild -->
+
+<!-- build:js scripts/modules.js -->
+<script src="bower_components/angular-i18n/angular-locale_ko-kr.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<script src="scripts/controllers/common.js"></script>
+<script src="scripts/controllers/investSearch.js"></script>
+<script src="scripts/services/services.js"></script>
+<script src="scripts/services/factory.js"></script>
+<script src="scripts/controllers/investAdd.js"></script>
+<script src="scripts/controllers/investStatus.js"></script>
+<script src="scripts/controllers/investStatusDetail.js"></script>
+<script src="scripts/services/headerService.js"></script>
+<script src="scripts/controllers/memberSearch.js"></script>
+<script src="scripts/controllers/memberAdd.js"></script>
+<script src="scripts/controllers/memberStatus.js"></script>
+<script src="scripts/controllers/loanSearch.js"></script>
+<script src="scripts/controllers/loanAdd.js"></script>
+<script src="scripts/controllers/loanStatus.js"></script>
+<script src="scripts/controllers/consultList.js"></script>
+<script src="scripts/controllers/disburseList.js"></script>
+<script src="scripts/controllers/costList.js"></script>
+<script src="scripts/controllers/loanStatusDetail.js"></script>
+<script src="scripts/controllers/adminLocal.js"></script>
+<script src="scripts/controllers/adminPermit.js"></script>
+<script src="scripts/controllers/purchaseList.js"></script>
+<script src="scripts/controllers/purchaseAdd.js"></script>
+<script src="scripts/controllers/memberDetail.js"></script>
+<script src="scripts/services/shareService.js"></script>
+<script src="scripts/controllers/memberBan.js"></script>
+<script src="scripts/directives/backButton.js"></script>
+<script src="scripts/directives/currencyInput.js"></script>
+<script src="scripts/controllers/userView.js"></script>
+<script src="scripts/controllers/userUpdate.js"></script>
+<script src="scripts/controllers/userLoanStatus.js"></script>
+<script src="scripts/controllers/userInvestStatus.js"></script>
+<script src="scripts/controllers/memberAll.js"></script>
+<script src="scripts/controllers/memberAddAll.js"></script>
+<script src="scripts/directives/sameAs.js"></script>
+<script src="scripts/directives/equals.js"></script>
+<script src="scripts/controllers/printConsultList.js"></script>
+<script src="scripts/controllers/printDisburseList.js"></script>
+<script src="scripts/controllers/printCostList.js"></script>
+<script src="scripts/controllers/notice.js"></script>
+<script src="scripts/filters/nfcurrency.js"></script>
+<script src="scripts/filters/nfzerocurrency.js"></script>
+<script src="scripts/directives/capitalize.js"></script>
+<script src="scripts/directives/decapitalize.js"></script>
+<script src="scripts/directives/badge.js"></script>
+<script src="scripts/controllers/investPayment.js"></script>
+<script src="scripts/controllers/printInvestStatus.js"></script>
+<script src="scripts/directives/validnumber.js"></script>
+<script src="scripts/controllers/printMemberAdd.js"></script>
+<script src="scripts/controllers/printMemberBan.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>

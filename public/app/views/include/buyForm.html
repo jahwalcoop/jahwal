@@ -1,0 +1,64 @@
+<form name="buyform" class="css-form" novalidate>
+    <div class="row">
+        <div class="span4"><i class="icon icon-ok"></i> {{buyDialog.data.ZoneName}} 공동구매 내역</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span4">
+            <fieldset ng-disabled="buyDialog.type == 'delete'">
+                <div class="row">
+                    <div class="span1">제목</div>
+                    <div class="span3"><input type="text" class="input-large" ng-model="buyDialog.buy.Subject" required></div>
+                </div>
+                <div class="row">
+                    <div class="span1">상태</div>
+                    <div class="span2">
+                        <select kendo-drop-down-list k-options="optStatus"
+                                k-on-change="selectStatusChange(kendoEvent)"
+                                ng-model="buyDialog.buy.Status" required ng-disabled="buyDialog.type == 'delete'"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span1">게시일</div>
+                    <div class="span2">
+                        <input kendo-date-picker k-options='kopts' ng-model="buyDialog.buy.StDate" aria-label="" required/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span1">마감일</div>
+                    <div class="span2">
+                        <input kendo-date-picker k-options='kopts' ng-model="buyDialog.buy.EdDate" aria-label="" required/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span1">사업단</div>
+                    <div class="span3">
+                        <select kendo-drop-down-list k-options="optGroupName"
+                                k-on-change="selectGroupNameChange(kendoEvent)"
+                                ng-model="buyDialog.buy.GroupName" required ng-disabled="buyDialog.type == 'delete'"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span1">총판매량</div>
+                    <div class="span3"><input type="text" class="input-small" ng-model="buyDialog.buy.Sales" required></div>
+                </div>
+                <div class="row">
+                    <div class="span1">판매금액</div>
+                    <div class="span3"><input type="text" class="input-small" ng-model="buyDialog.buy.Bill" required>원</div>
+                </div>
+                <div class="row" ng-show="buyDialog.type == 'delete'">
+                    <div class="span4" style="color: #ff0000;font-weight: bold">공동구매 내역을 삭제합니다.</div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-small" ng-click="buySubmit(buyDialog.type)"
+                            ng-disabled="buyform.$invalid">
+                        저장
+                    </button>
+                    <button type="button" class="btn btn-small" ng-click="buyCancel()">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

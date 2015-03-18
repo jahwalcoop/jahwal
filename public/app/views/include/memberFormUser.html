@@ -1,0 +1,145 @@
+<form name="userform" class="css-form" novalidate>
+    <fieldset ng-disabled="memberform.type == 'delete' || memberform.type == 'view' ">
+        <!--조합원 추가일때는 숨김-->
+        <div class="row" ng-hide="memberform.type == 'add'">
+            <div class="span2"><span class="icon icon-chevron-right"></span> 개인고유번호</div>
+            <div class="span8 form-inline">
+                {{member.Pid}}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="span2"><span class="icon icon-chevron-right"></span> 비밀번호 변경</div>
+            <div class="span8 form-inline">
+                <div class="row">
+                    <div class="span2">현재비밀번호</div>
+                    <div class="span6"><input type="password" class="input-large" ng-model="member.passwordcurrent"
+                                              name="passwordcurrent" id="passwordcurrent" required>
+                            <span class="msg-error" ng-show="(userform.passwordcurrent.$error.required)"
+                                  style="color:red">
+                            비밀번호를 입력해주세요.
+                            </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2">새 비밀번호</div>
+                    <div class="span6"><input type="password" class="input-large" ng-model="member.passwordnew"
+                                              name="passwordnew" id="passwordnew" equals="{{member.passwordrepeat}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2">새 비밀번호 재입력</div>
+                    <div class="span6"><input type="password" class="input-large" ng-model="member.passwordrepeat"
+                                              name="passwordrepeat"
+                                              equals="{{member.passwordnew}}">
+                            <span class="msg-error" ng-show="(userform.passwordrepeat.$error.equals)" style="color:red">
+                            비밀번호가 틀립니다.
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="span2"><span class="icon icon-chevron-right"></span> 인적사항</div>
+            <div class="span8">
+                <div class="row">
+                    <div class="span1"><span class="label pull-right">이름</span></div>
+                    <div class="span2"><input type="text" class="input-small" ng-model="member.Name" required></div>
+                    <div class="span1"><span class="label pull-right">생년월일</span></div>
+                    <div class="span4 form-inline">
+                        <!--<input kendo-date-picker k-options='kopts' ng-model="member.Birthday" required/>-->
+                        <span class="input-append">
+                            <input type="text" ng-model="member.Birthday"
+                                   class="input-small"
+                                   data-date-format="yyyy/m/d" bs-datepicker required>
+                            <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                    class="icon-calendar"></i>
+                            </button>
+                        </span>
+                        <label class="radio"><input type="radio" name="dayClass" checked="checked"
+                                                    ng-model="member.CalendarType" value="양력" required>양력</label>
+                        <label class="radio"><input type="radio" name="dayClass" ng-model="member.CalendarType"
+                                                    value="음력" required>음력</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span1"><span class="label pull-right">주소</span></div>
+                    <div class="span7">
+                            <span class="input-prepend">
+                                <button class="btn" ng-click="address.dialog.center().open()">주소검색</button>
+                                <input type="text" class="input-large" ng-model="member.Address" style="width:500px"
+                                       required>
+                            </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span1"><span class="label pull-right">연락처</span></div>
+                    <div class="span2"><input type="text" class="input-small" ng-model="member.Phone" required>
+                    </div>
+                    <div class="span1"><span class="label pull-right">휴대폰</span></div>
+                    <div class="span2"><input type="text" class="input-small" ng-model="member.CellPhone" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="span2"><span class="icon icon-chevron-right"></span> 사업단</div>
+            <div class="span1"><span class="label pull-right">사업단명</span></div>
+            <div class="span2">
+                <!--<input type="text" class="input-small" ng-model="member.ZoneName" required>-->
+                <!--<select kendo-drop-down-list k-options="selectZoneOpt" k-on-change="selectZoneChange(kendoEvent)" ng-model="zoneSelected" required></select>-->
+                <select ui-select2="select2Options" ng-model="member.GroupName" data-placeholder=""
+                        style="width:150px" ng-disabled="memberform.type == 'delete'">
+                    <option value=""></option>
+                    <option ng-repeat="group in groups" value="{{group.GroupName}}">{{group.GroupName}}</option>
+                </select>
+            </div>
+            <div class="span1"><span class="label pull-right">사업단 연락처</span></div>
+            <div class="span2"><input type="text" class="input-small" ng-model="member.GroupPhone"
+                                      ng-disabled="true"></div>
+        </div>
+        <hr>
+    </fieldset>
+    <div class="row">
+        <div class="pull-right">
+            <button type="button" class="btn btn-small" ng-click="userSubmit()"
+                    ng-disabled="(userform.$invalid || userform.passwordrepeat.$error.equals)">확인
+            </button>
+            <button type="button" class="btn btn-small" ng-click="userCancel()">취소</button>
+        </div>
+    </div>
+</form>
+
+<div kendo-window="address.dialog" k-title="'주소검색'" k-visible="false" k-modal="true" style="height:400px">
+    <div class="span7">
+        <form name="addressform" class="css-form" novalidate>
+            <div class="row">
+                <div class="span6">
+                    <fieldset>
+                        <div class="row">
+                        <span class="input-append">
+                            <input type="text" class="input-large" ng-model="address.token">
+                            <button type="button" type="submit" class="btn btn-info"
+                                    ng-click="address.search(address.token)">
+                                <i class="icon-search"></i>
+                            </button>
+                        </span>
+                        </div>
+                        <div class="row">
+                            <div class="span5" style="height:200px;">
+                                <ul class="unstyled">
+                                    <li ng-repeat="addr in address.data">
+                                        <span class="label"
+                                              ng-click="address.select(addr.Address)">{{addr.Address}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

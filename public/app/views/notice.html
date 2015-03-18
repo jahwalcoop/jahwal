@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="row">
+        <div class="span12">
+            <button class="btn pull-left" back-button><i class="icon-chevron-left"></i>뒤로</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span10 offset1">
+            <tabset>
+                <tab heading="개인정보이용방침" active="tab.privacy">
+                    <div ng-include="getPrivacy()"></div>
+                </tab>
+                <tab heading="사이트맵" active="tab.sitemap">
+                    <div ng-include="getSitemap()"></div>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>
+

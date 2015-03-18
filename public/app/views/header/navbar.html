@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="navbar" bs-navbar>
+        <div class="navbar-inner">
+            <ul class="nav navbar-nav">
+                <li class="dropdown {{ isActive('/memberSearch') }} {{ isActive('/memberAdd') }} {{ isActive('/memberStatus') }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">조합원<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ isActive('/memberSearch') }}"><a href="#/memberSearch">총계/누계 조회</a></li>
+                        <li class="{{ isActive('/memberAdd') }}" ng-show="adminPermit"><a href="#/memberAdd">신규 조합원 등록</a></li>
+                        <li class="{{ isActive('/memberStatus') }}"><a href="#/memberStatus">조합원 정보 조회</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ isActive('/investSearch') }} {{ isActive('/investAdd') }} {{ isActive('/investAddDetail') }} {{ isActive('/investStatus') }} {{ isActive('/investStatusDetail') }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">출자금<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ isActive('/investSearch') }}"><a href="#/investSearch">총계/누계 조회</a></li>
+                        <li class="{{ isActive('/investPayment') }}"><a href="#/investPayment">납부현황 조회</a></li>
+                        <li class="{{ isActive('/investAdd') }}" ng-show="adminPermit"><a
+                                href="#/investAdd">개인출자신청 기입</a></li>
+                        <li class="{{ isActive('/investStatus') }} {{ isActive('/investStatusDetail') }}"><a
+                                href="#/investStatus">개인출자신청 조회</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ isActive('/loanSearch') }} {{ isActive('/loanAdd') }} {{ isActive('/loanStatus') }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">대출금<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ isActive('/loanSearch') }}"><a href="#/loanSearch">총계/누계 조회</a></li>
+                        <li class="{{ isActive('/loanAdd') }}"  ng-show="adminPermit"><a href="#/loanAdd">개인대출신청 기입</a></li>
+                        <li class="{{ isActive('/loanStatus') }}"><a href="#/loanStatus">개인대출현황 조회</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ isActive('/consultList') }} {{ isActive('/disburseList') }} {{ isActive('/costList') }}" ng-show="zone.Scope == 'all'">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">공제조합 운영비<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ isActive('/consultList') }}"><a href="#/consultList">품의서 등록</a></li>
+                        <li class="{{ isActive('/disburseList') }}"><a href="#/disburseList">수입/지출결의서 등록</a></li>
+                        <li class="{{ isActive('/costList') }}"><a href="#/costList">세입/세출 집계표</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ isActive('/adminLocal') }} {{ isActive('/adminPermit') }}"  ng-show="adminPermit">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">관리자설정<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ isActive('/adminLocal') }}"><a href="#/adminLocal">우리지역 관련설정</a></li>
+                        <li class="{{ isActive('/adminPermit') }}"><a href="#/adminPermit">조합원 권한설정</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ isActive('/purchaseList') }} {{ isActive('/purchaseAdd') }}" ng-show="zone.Scope == 'all'">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">공동구매<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ isActive('/purchaseList') }}"><a href="#/purchaseList">공동구매 목록</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div>

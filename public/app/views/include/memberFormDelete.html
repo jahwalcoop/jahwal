@@ -1,0 +1,124 @@
+<div class="span10 offset1">
+    <div class="row">
+        <div class="span2"><span class="icon icon-hand-right"></span> 개인고유번호</div>
+        <div class="span7"><input class="input-large" paceholder="JWIC00002317" ng-model="member">
+            <button class="btn btn-small">중복확인</button>
+        </div>
+    </div>
+    <div class="row" style="background-color: #efefef">
+        <div class="span2"><span class="icon icon-hand-right"></span> 인적사항</div>
+        <div class="span7">
+            <div class="row">
+                <div class="span1"><span class="label pull-right">이름</span></div>
+                <div class="span1"><input class="input-small" placeholder="고길동"></div>
+                <div class="span1"><span class="label pull-right">생년월일</span></div>
+                <div class="span4">
+                    <form class="form-inline">
+                        <input kendo-date-picker k-options='kopts' ng-model="Birthday" aria-label=""/>
+                        <label class="radio"><input type="radio" name="dayClass" checked="checked"
+                                                    ng-model="member.CalendarType">양력</label>
+                        <label class="radio"><input type="radio" name="dayClass" ng-model="member.CalendarType">음력</label>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span1"><span class="label pull-right">주소</span></div>
+                <div class="span7">
+                    <div class="input-append">
+                        <button class="btn">우편번호검색</button>
+                        <input type="text" class="input-large"
+                               placeholder="XX시 XX구 XX동 XXX번지" ng-model="member.Address">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span1"><span class="label pull-right">연락처</span></div>
+                <div class="span2"><input class="input-small" placeholder="0000-1234-5678"
+                                          ng-model="member.Phone"></div>
+                <div class="span1"><span class="label pull-right">휴대폰</span></div>
+                <div class="span2"><input class="input-small" placeholder="0000-1234-5678"
+                                          ng-model="member.CellPhone"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span2"><span class="icon icon-hand-right"></span> 사업단</div>
+        <div class="span1"><span class="label pull-right">사업단명</span></div>
+        <div class="span2"><input class="input-small" placeholder="0000-1234-5678" ng-model="member.ZoneName">
+        </div>
+        <div class="span1"><span class="label pull-right">사업단 연락처</span></div>
+        <div class="span2"><input class="input-small" placeholder="0000-1234-5678"
+                                  ng-model="member.ZoneContact"></div>
+    </div>
+    <div class="row" style="background-color: #efefef">
+        <div class="span2"><span class="icon icon-hand-right"></span>약정출자좌수</div>
+        <div class="span7">
+            <div class="row">
+                <div class="span7">
+                    <select kendo-drop-down-list k-options="selectOptions"
+                            k-on-change="selectChange(kendoEvent)" ng-model="srcSelect"></select>
+                    <input class="input-small" placeholder="{{money}}" value="{{money}}">원
+                </div>
+            </div>
+            <!--<div class="row">-->
+            <!--<div class="span8">-->
+            <!--* 각 지역공제협동조합 마다 설정된 좌당 금액에 따라 출자액이 자동으로 산정됩니다.<br>-->
+
+            <!--<form class="form-inline">-->
+            <!--<label class="radio"><input type="radio" name="searchParam"-->
+            <!--checked="checked">정기출자</label>-->
+            <!--<label class="radio"><input type="radio" name="searchParam">수시출자</label>-->
+            <!--</form>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="span2"><span class="icon icon-hand-right"></span>가입일시</div>
+        <div class="span7">
+            <div class="input-group">
+                <input kendo-date-picker k-options='kopts' ng-model="RegDate"/>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="background-color: #efefef">
+        <div class="span2"><span class="icon icon-hand-right"></span>조합원구분</div>
+        <div class="span7">
+            <form class="form-inline">
+                <label class="radio"><input type="radio" name="memberClass" checked="checked"
+                                            ng-model="member.memberType">참여주민</label>
+                <label class="radio"><input type="radio" name="memberClass"
+                                            ng-model="member.memberType">지역주민</label>
+                <label class="radio"><input type="radio" name="memberClass"
+                                            ng-model="member.memberType">기타</label>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span2"><span class="icon icon-hand-right"></span>가입비</div>
+        <div class="span7">
+            <input class="input-sm" placeholder="10000" ng-model="member.Fee">원납
+        </div>
+    </div>
+    <div class="row">
+        <div class="span2"><span class="icon icon-hand-right"></span>특이사항</div>
+        <div class="span7">
+            <textarea rows="3" class="span8" ng-model="member.Note"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span5 offset2" style="color: #ff0000">
+            <!--<pre>-->
+            상기의 조합원에 대한 탈퇴를 진행합니다.<br>
+            탈퇴 처리되어도 해당 조합원의 기본정보는 조회 확인이 가능하며<br>
+            이후 재가입 시에는 개인고유번호가 재교부 됩니다.
+            <!--</pre>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="pull-right">
+            <button type="button" class="btn btn-small" ng-click="memberBanOk()">탈퇴 처리 합니다</button>
+            <button type="button" class="btn btn-small" back-button>취소</button>
+        </div>
+    </div>
+</div>

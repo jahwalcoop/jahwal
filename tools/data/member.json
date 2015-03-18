@@ -1,0 +1,53 @@
+// 사용하지 않는다.
+// 데이터의 예시로 남겨둔다.
+// 사용자 추가에 대한것은 routes/member.js에 하드코딩되어있다.
+
+{
+    "Address": "주소",
+    "Birthday": "2013-10-22T20:19:22.941Z",
+    "CalendarType" : "양력",
+    "CellPhone" : "02-318-4140",
+    "Fee" : 10000,
+    "FundingMethod" : "수시출자",
+    "GroupName" : "",
+    "GroupPhone" : "",
+    "MemberClass" : "실무자",
+    "MemberType" : "기타",
+    "Name" : "관리자",
+    "Note" : "없음",
+    "Password" : "1234",
+    "Phone" : "02-318-4140",
+    "Pid" : "CENTER30",
+    "RegDate" : "2013-10-22T20:19:22.941Z",
+    "Status" : "활동중",
+    "ZoneCode" : "CENTER",
+    "ZoneContact" : "02-318-4140",
+    "ZoneName" : "서울광역자활센터",
+    "Loan" : [
+        {
+            "LoanDate" : "2013-10-22T20:23:01.990Z",
+            "LoanExpDate" : "2014-10-22T20:23:01.990Z",
+            "LoanPeriod" : "12",
+            "LoanRate" : 10,
+            "LoanType" : "임의상환",
+            "LoanUse" : "기타",
+            "Principal" : 300000,
+            "Repay" : [
+                {
+                    "RepayDate" : "2013-10-22T20:23:38.477Z",
+                    "Payment" : 3000,
+                    "Interest" : 200,
+                    "_id" : "5266ded31405202418000010"
+                }
+            ]
+        }
+    ],
+    "Fund" : [
+        {
+            "ZoneName" : "서울광역자활센터",
+            "DepositDate" : "2013-10-22T15:00:00Z",
+            "Method" : "수시출자",
+            "Money" : 20000
+        }
+    ]
+}

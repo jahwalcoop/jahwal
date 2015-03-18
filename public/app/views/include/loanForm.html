@@ -1,0 +1,88 @@
+<form name="loanform" class="css-form" novalidate>
+    <div class="row">
+        <div class="span6"><i class="icon icon-ok"></i> 조합원 {{loanDialog.data.Name}}님의 대출 신청 기입 절차 입니다.</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span6">
+            <fieldset ng-disabled="loanDialog.type == 'delete'">
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 개인고유번호</div>
+                    <div class="span3">{{loanDialog.data.Pid}}</div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 사업단</div>
+                    <div class="span4">
+                        <select ui-select2="select2Options" ng-model="loanDialog.loan.LoanGroupName" data-placeholder=''
+                                style="width:150px" ng-disabled="loanDialog.type == 'delete'">
+                            <option value=""></option>
+                            <option ng-repeat="group in groups" value="{{group.GroupName}}">{{group.GroupName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 대출유형</div>
+                    <div class="span4">
+                        <select ui-select2="select2Options" ng-model="loanDialog.loan.LoanType" data-placeholder=""
+                                ng-required="true" style="width:150px;margin-bottom:2px">
+                            <option ng-repeat="param in loanTypes" value="{{param.LoanType}}">{{param.LoanType}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 용도</div>
+                    <div class="span4">
+                        <select ui-select2="select2Options" ng-model="loanDialog.loan.LoanUse" data-placeholder=""
+                                ng-required="true" style="width:150px;margin-bottom:2px">
+                            <option ng-repeat="param in loanUses" value="{{param.LoanUse}}">{{param.LoanUse}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 대출일</div>
+                    <div class="span4">
+                        <div class="input-append">
+                            <input type="text" ng-model="loanDialog.loan.LoanDate"
+                                   class="input-small"
+                                   data-date-format="yyyy/m/d" bs-datepicker required>
+                            <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                    class="icon-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 대출기간(월)</div>
+                    <div class="span4">
+                        <input type="number" class="input-small" ng-model="loanDialog.loan.LoanPeriod" ng-pattern="/^[0-9]+$/" required>월
+                        <br>
+                        <span>* 기간을 입력하면 만기일은 자동 지정됩니다.</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 이자율</div>
+                   <!-- <div class="span3"><input type="text" class="input-small" ng-model="loanDialog.loan.LoanRate" ng-pattern="/^[0-9]+$/" required>%</div>-->
+                    <div class="span3"><input type="text" class="input-small" ng-model="loanDialog.loan.LoanRate" ng-pattern="/^[0-9.]+$/"  required>%</div>
+
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 대출금액</div>
+                    <div class="span3"><input type="text" class="input-small" ng-model="loanDialog.loan.Principal" ng-pattern="/^[0-9]+$/" required>원</div>
+                </div>
+                <div class="row" ng-show="loanDialog.type == 'delete'">
+                    <div class="span5" style="color: #ff0000;font-weight: bold">대출내역을 삭제합니다.</div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-small" ng-click="loanSubmit(loanDialog.type)"
+                            ng-disabled="loanform.$invalid">
+                        저장
+                    </button>
+                    <button type="button" class="btn btn-small" ng-click="loanCancel()">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

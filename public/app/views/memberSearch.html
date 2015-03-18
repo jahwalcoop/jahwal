@@ -1,0 +1,99 @@
+<div class="row well">
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span10"><h5><span class="icon icon-ok"></span> 지역 자활공제 협동조합의 조합원 수 총계/누계 내역을 조회합니다.</h5>
+                </div>
+                <div class="span2">
+                    <div class="pull-right">
+                        <!--<button class="btn btn-default btn-sm">화면 출력하기</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form name="summaryForm" class="css-form" novalidate>
+            <div class="span12">
+                <div class="row">
+                    <div class="span12 form-inline">
+                        <span class="span1">지역</span>
+                        <select ui-select2="select2Options" ng-model="zonecode" data-placeholder="" required
+                                style="width:150px" required ng-disabled="disablezone">
+                            <option ng-repeat="zone in zones" value="{{zone.Code}}">{{zone.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span12 form-inline">
+                        <span class="span1">사업단</span>
+                        <select ui-select2="select2Options" ng-model="groupname" data-placeholder="" required
+                                style="width:150px" required>
+                            <option value="all">전체</option>
+                            <option ng-repeat="group in groups" value="{{group.GroupName}}">{{group.GroupName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span12 form-inline">
+                        <span class="span1">조회기간</span>
+
+                    <span class="input-append">
+                        <button type="button" class="btn" ng-model="tbutton.active" bs-button style="width:80px">
+                            {{tbutton.label}}
+                        </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" ng-model="fromdate"
+                               class="input-small"
+                               data-date-format="yyyy/m/d" bs-datepicker ng-disabled="tbutton.active">
+                        <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                class="icon-calendar"></i>
+                        </button>
+                    </span>
+                        ~
+                    <span class="input-append">
+                        <input type="text" ng-model="todate"
+                               class="input-small"
+                               data-date-format="yyyy/m/d" bs-datepicker ng-disabled="tbutton.active">
+                        <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                class="icon-calendar"></i>
+                        </button>
+                    </span>
+                    </div>
+                </div>
+                <div class="row" style="text-align: center">
+                    <button class="btn btn-default" ng-click="submit()" ng-disabled="summaryForm.$invalid">
+                        변동내역조회
+                    </button>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="span12">
+                        <!--<tabset>-->
+                        <!--<tab heading="합계">-->
+                        <div class="row" style="height: 280px">
+                            <div class="span10 offset1">
+                                <div class="row well">
+                                    <dl class="span4" style="text-align: center;margin-left:80px">
+                                        <dt>
+                                        <h3>총계 : <b id="totalSum">{{memberSumary.tot.sum}}</b>명</h3></dt>
+                                        <dd>가입 총계 : <b id="totalIn">{{memberSumary.tot.in}}</b>명</dd>
+                                        <dd>탈퇴 총계 : <b id="totalOut">{{memberSumary.tot.out}}</b>명</dd>
+                                    </dl>
+                                    <dl class="span4" style="text-align: center">
+                                        <dt>
+                                        <h3>누계 : <b id="allSum">{{memberSumary.all.sum}}</b>명</h3></dt>
+                                        <dd>가입 누계 : <b id="allIn">{{memberSumary.all.in}}</b>명</dd>
+                                        <dd>탈퇴 누계 : <b id="allOut">{{memberSumary.all.out}}</b>명</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <!--</tab>-->
+                        <!--</tabset>-->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

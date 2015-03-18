@@ -1,0 +1,36 @@
+<form name="groupform" class="css-form" novalidate>
+    <div class="row">
+        <div class="span6"><i class="icon icon-ok"></i> 사업단을 추가합니다.</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span6">
+            <fieldset ng-disabled="groupDialog.type == 'delete'">
+                <div class="row">
+                    <div class="span2">사업단 이름</div>
+                    <div class="span3"><input type="text" class="input-small" ng-model="groupDialog.group.GroupName" required></div>
+                </div>
+                <div class="row">
+                    <div class="span2">사업단 대표자</div>
+                    <div class="span3"><input type="text" class="input-small" ng-model="groupDialog.group.ContactName" required></div>
+                </div>
+                <div class="row">
+                    <div class="span2">연락처</div>
+                    <div class="span3"><input type="text" class="input-small" ng-model="groupDialog.group.GroupPhone" required></div>
+                </div>
+                <div class="row" ng-show="groupDialog.type == 'delete'">
+                    <div class="span5" style="color: #ff0000;font-weight: bold">사업단을 삭제합니다.</div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-small" ng-click="groupSubmit(groupDialog.type)"
+                            ng-disabled="groupform.$invalid">
+                        저장
+                    </button>
+                    <button type="button" class="btn btn-small" ng-click="groupCancel()">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

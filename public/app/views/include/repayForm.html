@@ -1,0 +1,73 @@
+<form name="repayform" class="css-form" novalidate>
+    <div class="row">
+        <div class="span5">
+            <fieldset ng-disabled="repayDialog.type == 'delete'">
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 번호</div>
+                    <div class="span2">
+                        {{repayDialog.data.LoanNo}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 대출유형</div>
+                    <div class="span2">
+                        {{repayDialog.data.LoanType}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 대출일</div>
+                    <div class="span2">
+                        {{repayDialog.data.LoanDate | date:'yyyy/MM/dd'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 사업단</div>
+                    <div class="span3">
+                        <select ui-select2="select2Options" ng-model="repayDialog.repay.RepayGroupName" data-placeholder=''
+                                style="width:150px" ng-disabled="fundDialog.type == 'delete'">
+                            <option value=""></option>
+                            <option ng-repeat="group in groups" value="{{group.GroupName}}">{{group.GroupName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 상환일</div>
+                    <div class="span3">
+                        <div class="input-append">
+                            <input type="text" ng-model="repayDialog.repay.RepayDate"
+                                   class="input-small"
+                                   data-date-format="yyyy/m/d" bs-datepicker required>
+                            <button type="button" class="btn btn-info" data-toggle="datepicker"><i
+                                    class="icon-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 상환납입금</div>
+                    <div class="span3">
+                        <input type="number" class="input-small" ng-model="repayDialog.repay.Payment" ng-pattern="/^[0-9]+$/" required>원
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><span class="icon icon-chevron-right"></span> 이자액</div>
+                    <div class="span3">
+                        <input type="number" class="input-small" ng-model="repayDialog.repay.Interest" ng-pattern="/^[0-9]+$/" required>원
+                    </div>
+                </div>
+                <div class="row" ng-show="repayDialog.type == 'delete'">
+                    <div class="span5" style="color: #ff0000;font-weight: bold">상환내역을 삭제합니다.</div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-small" ng-click="repaySubmit(repayDialog.type)"
+                            ng-disabled="repayform.$invalid">
+                        저장
+                    </button>
+                    <button type="button" class="btn btn-small" ng-click="repayCancel()">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="span6">
+    버전 {{ver}} 공지사항
+    </div>
+    <hr>
+</div>
+<div class="row">
+    <div class="span6">
+        <ul ng-repeat="message in noticeDialog.messages">
+            <li>{{message}}</li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <hr>
+    <div class="span3">
+        <label class="checkbox">
+            <input type="checkbox" ng-model="noticeDialog.checked"> 다시보지않음
+        </label>
+    </div>
+    <div class="span3">
+        <button type="button" class="btn btn-small pull-right" ng-show="true"
+                ng-click="noticeDialog.okClick(noticeDialog.checked)">확인
+        </button>
+    </div>
+</div>

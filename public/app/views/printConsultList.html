@@ -1,0 +1,127 @@
+<!--헤더-->
+<div class="no-print" style="width:900px">
+    <button class="btn" back-button><i class="icon-chevron-left"></i>뒤로</button>
+    <br>
+    <br>
+</div>
+<div style="width:900px">
+    <div style="float: left;width:500px">
+        <h1>품의서</h1>
+    </div>
+    <div class="pull-right">
+        <table border="1" style="width:300px;height:100px">
+            <tr>
+                <td rowspan="2">결재</td>
+                <td style="width:25%">담당</td>
+                <td style="width:25%">이사장</td>
+                <td style="width:25%"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--0 -->
+<table border="1" style="width:900px;clear: both">
+    <tr>
+        <td colspan="2">세입(출)과목</td>
+        <td></td>
+        <td></td>
+        <td>발의</td>
+        <td>{{data.consultDate | date}}</td>
+    </tr>
+    <tr>
+        <td style="width:50px">관</td>
+        <td>자활근로사업비</td>
+        <td>지출원</td>
+        <td>결재</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>항</td>
+        <td>사업비</td>
+        <td>사 업</td>
+        <td>{{data.business}}</td>
+        <td>출 납</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>목</td>
+        <td>운영비</td>
+        <td>작 성 자</td>
+        <td>{{Name}}</td>
+        <td>등 기</td>
+        <td></td>
+    </tr>
+</table>
+<!--1        -->
+<table border="1" style="width:900px">
+    <tr>
+        <td>No.</td>
+        <td>계정과목(세목)</td>
+        <td>적 요</td>
+        <td>금액</td>
+        <td>거 래 처</td>
+        <td>자금원천</td>
+    </tr>
+    <tr ng-repeat="item in data.data">
+        <td>{{item.No}}</td>
+        <td>{{item.Account}}</td>
+        <td>{{item.Customer}}</td>
+        <td>{{item.Price}}</td>
+        <td>{{item.Source}}</td>
+        <td>{{item.Summary}}</td>
+    </tr>
+    <tr>
+        <td colspan="3">합계</td>
+        <td>{{data.sum}}</td>
+        <td colspan="2"></td>
+    </tr>
+</table>
+<!--2        -->
+<table border="1" style="width:900px">
+    <tr>
+        <td style="height:300px;width:100px;">원인 및 용도</td>
+        <td>{{data.note}}</td>
+    </tr>
+</table>
+<!--3        -->
+<table border="1" style="width:900px">
+    <tr>
+        <td>상기의 원인 용도로 아래와 같이 품의하고자 하오니 ({{data.consultDate | date}}) 까지<br>
+            (구입,운반,수선,인쇄,지출)할 수 있도록 하여 주시기 바랍니다.
+        </td>
+    </tr>
+</table>
+<!--4        -->
+<table border="1" style="width:900px">
+    <tr>
+        <td>품명</td>
+        <td>규격</td>
+        <td>단위</td>
+        <td>수량</td>
+        <td>단가</td>
+        <td>금액</td>
+        <td>비고</td>
+    </tr>
+    <tr ng-repeat="item in data.detaildata">
+        <td>{{item.Standard}}</td>
+        <td>{{item.Unit}}</td>
+        <td>{{item.Item}}</td>
+        <td>{{item.Cost}}</td>
+        <td>{{item.Amount}}</td>
+        <td>{{item.Price}}</td>
+        <td>{{item.Note}}</td>
+    </tr>
+    <tr>
+        <td colspan="3">합계</td>
+        <td>{{data.detailsum1}}</td>
+        <td>{{data.detailsum2}}</td>
+        <td>{{data.detailsum3}}</td>
+        <td></td>
+    </tr>
+</table>

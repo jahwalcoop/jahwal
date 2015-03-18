@@ -1,0 +1,15 @@
+<div class="row well">
+    <div class="row">
+        <div class="span12"><h5><span class="icon icon-ok"></span> 조합원 "{{member.Name}}"님의 개인정보 입니다.</h5></div>
+    </div>
+    <hr class="bs-docs-separator">
+    <div class="row">
+        <div class="span10 offset1">
+            <div ng-include="memberform.url"></div>
+        </div>
+    </div>
+</div>
+
+<div kendo-window="warnDialog.dialog" k-title="'확인'" k-visible="false" k-modal="false" style="z-index:1">
+    <div ng-include="warnDialog.url"></div>
+</div>

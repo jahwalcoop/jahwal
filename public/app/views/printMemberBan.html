@@ -1,0 +1,102 @@
+<!--헤더-->
+<div class="memberban">
+    <div class="no-print" style="width:900px">
+        <button class="btn" back-button><i class="icon-chevron-left"></i>뒤로</button>
+        <br>
+        <br>
+    </div>
+    <!--0 -->
+    <div class="header"><h1><b>탈 &nbsp;&nbsp;퇴 &nbsp;&nbsp;신 &nbsp;&nbsp;청 &nbsp;&nbsp;서</b></h1></div>
+    <div style="width:900px;margin-bottom: 20px">
+        <div class="pull-right">
+            <table border="2" style="width:300px;height:100px">
+                <tr>
+                    <td rowspan="2">결재</td>
+                    <td style="width:25%">담당</td>
+                    <td style="width:25%">이사장</td>
+                    <td style="width:25%"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="body">
+        <table border="2">
+            <tr>
+                <td>성명</td>
+                <td>{{member.Name}}</td>
+                <td>생년월일</td>
+                <td>{{bDate}} ({{member.CalendarType}})</td>
+            </tr>
+            <tr>
+                <td>조합원번호</td>
+                <td>{{member.Pid}}</td>
+                <td>탈퇴사유</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>연락처</td>
+                <td>{{member.CellPhone}}</td>
+                <td>가입 연월일</td>
+                <td>{{regYear}}/{{regMonth}}/{{regDay}}</td>
+            </tr>
+            <tr>
+                <td>현주소</td>
+                <td colspan="3">{{member.Address}}</td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        위와 같은 사유로 귀 조합에서 탈퇴하고자 하오니 조합에 규정된 탈퇴절차에 의거 아래의 금액을 환급하여 주시기 바랍니다.
+        <br>
+        <br>
+        <br>
+        <table border="2">
+            <tr>
+                <td colspan="2">과 목</td>
+                <td>금 액</td>
+                <td>비 고</td>
+            </tr>
+            <tr>
+                <td rowspan="3" style="width:30px;padding:10px">거래상황</td>
+                <td>출 자 금</td>
+                <td>{{fundSum | nfcurrency}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>대 출 금</td>
+                <td>{{loanSum-repaySum | nfcurrency}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>환 급 금</td>
+                <td>{{fundSum-(loanSum-repaySum) | nfcurrency}}</td>
+                <td></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="text-align: center">
+        {{thisYear}}년 &nbsp;&nbsp;&nbsp;&nbsp;{{thisMonth}}월 &nbsp;&nbsp;&nbsp;&nbsp;{{thisDay}}일<br>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="text-align: right">
+        신청인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{member.Name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(인 또는 서명)
+        </div>
+    </div>
+</div>

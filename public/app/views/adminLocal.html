@@ -1,0 +1,124 @@
+<div class="row well">
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span10"><h5><span class="icon icon-ok"></span> 우리지역 관련설정</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span2">
+                    지역명 설정
+                </div>
+                <div class="span8">
+                    <input type="text" class="input-large" ng-model="name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2">
+                    연락처 설정
+                </div>
+                <div class="span8">
+                    <input type="text" class="input-large" ng-model="contact">
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2">
+                    주소 설정
+                </div>
+                <div class="span8">
+                    <input type="text" class="input-xxlarge" ng-model="address">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="span2">
+                    출자미납경고(월)
+                </div>
+                <div class="span8">
+                    <input type="text" class="input-large" ng-model="defaultmonth">달
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2">
+                    1좌당 출자금액 설정
+                </div>
+                <div class="span8">
+                    <input type="text" class="input-large" ng-model="moneycut">원
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2">가입비 설정</div>
+                <div class="span8">
+                    <input type="text" class="input-large" ng-model="membershipfee">원
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2">비밀번호 초기화 설정</div>
+                <div class="span8">
+                    <button type="button" class="btn" ng-model="tbutton.active" bs-button style="width:80px">
+                        {{tbutton.label}}
+                    </button>
+                    <div class="row">
+                        <div class="span4">
+                            <input type="text" class="input-large" ng-model="defaultpw" ng-show="tbutton.active">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="span2">대출항목 설정</div>
+                <div class="span3">
+                    대출유형설정<br>
+                    <div class="row">
+                        <div class="btn-group span2">
+                            <button class="btn btn-small" ng-click="addType()" ng-show="adminPermit"><i class="icon icon-plus"></i></button>
+                            <button class="btn btn-small" ng-click="deleteType()" ng-show="adminPermit"><i class="icon icon-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gridStyle" ng-grid="gridOptionsType" style="height:180px"></div>
+                </div>
+                <div class="span3">
+                    대출용도설정<br>
+                    <div class="row">
+                        <div class="btn-group span2">
+                            <button class="btn btn-small" ng-click="addUse()" ng-show="adminPermit"><i class="icon icon-plus"></i></button>
+                            <button class="btn btn-small" ng-click="deleteUse()" ng-show="adminPermit"><i class="icon icon-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gridStyle" ng-grid="gridOptionsUse" style="height:180px"></div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="span2">사업단 설정</div>
+                <div class="span8">
+                    <button class="btn" ng-click="groupAddClick()" ng-show="adminPermit">사업단 추가</button>
+                    <div id="grid" kendo-grid k-data-source="kgdatasource" k-pageable="false" k-sortable="true"
+                         k-columns="kgcolumns"
+                         k-selectable="'row'" k-resizable="true" k-editable="false"
+                         k-on-change="rowSelected(kendoEvent)" style="height: 380px"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span11">
+                    <div class="pull-right">
+                        <br>
+                        <button class="btn" ng-click="submit()" ng-show="adminPermit">&nbsp;&nbsp;&nbsp;적용&nbsp;&nbsp;&nbsp;</button>
+                        <button class="btn" ng-click="cancel()" ng-show="adminPermit">&nbsp;&nbsp;&nbsp;취소&nbsp;&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div kendo-window="groupDialog.dialog" k-title="'사업단'" k-visible="false" k-modal="true">
+    <div ng-include="groupDialog.url"></div>
+</div>
